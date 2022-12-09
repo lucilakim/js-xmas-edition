@@ -6,8 +6,8 @@ $button.onclick = (e) => {
     const city = $form.ciudad.value;
     const giftDescription = $form['descripcion-regalo'].value;
 
-    console.log(city);
-    console.log(giftDescription)
+    console.log(validateCity(city));
+    console.log(validateGiftDescription(giftDescription));
 }
 
 //---------- Functions will go in another file called "class-7-task-calculations.js".
