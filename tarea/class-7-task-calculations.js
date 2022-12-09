@@ -7,9 +7,9 @@ function validateNotEmpty(value, message) {
 
 function validateCity(city) {
     return validateNotEmpty(city, 'You must select a city');
-} 
+}
 
-function validateGiftDescription(description){
+function validateGiftDescription(description) {
     return validateNotEmpty(description, 'You must write what you would like to receive')
 }
 
