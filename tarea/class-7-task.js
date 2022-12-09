@@ -10,8 +10,6 @@ $button.onclick = (e) => {
     console.log(validateGiftDescription(giftDescription));
 }
 
-//---------- Functions will go in another file called "class-7-task-calculations.js".
-
 /*
 * Hacer las funciones de validación de validarCiudad y validarDescripcionRegalo.
 * Escribir pruebas para esas funciones.
