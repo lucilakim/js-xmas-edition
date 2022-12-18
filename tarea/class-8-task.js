@@ -25,26 +25,28 @@ function validateForm(e) {
 }
 
 function handleErrors(errors) {
-    document.querySelectorAll('.error-item').forEach(e => {
-        e.remove();
-    });
-
     const keys = Object.keys(errors);
     const $errors = document.querySelector('#errores');
     let errorQuantity = 0;
 
     keys.forEach((key) => {
         const error = errors[key];
+        const $errorItem = document.querySelector(`.error-item-${key}`);
 
         if (error) {
             $form[key].className = 'error';
-            const $error = document.createElement('li');
-            $error.className = 'error-item';
-            $error.innerText = error;
-            $errors.appendChild($error);
+            if ($errorItem === null) {
+                const $error = document.createElement('li');
+                $error.className = `error-item-${key}`;
+                $error.innerText = error;
+                $errors.appendChild($error);
+            }
             errorQuantity++;
         } else {
             $form[key].className = '';
+            if ($errorItem !== null) {
+                $errorItem.remove();
+            }
         }
     })
 
@@ -62,3 +64,4 @@ el mensaje exitoso se muestre 5 segundos y nos redireccione a
 
 la otra limpiar el error para que no se acumulen
 */
+
