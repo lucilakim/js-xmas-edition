@@ -5,35 +5,51 @@ function validateForm(e) {
     e.preventDefault();
     const city = $form['ciudad'].value;
     const giftDescription = $form['descripcion-regalo'].value;
-
     const errorCity = validateCity(city);
     const errorGiftDescription = validateGiftDescription(giftDescription);
 
     const errors = {
-        city: errorCity,
+        ciudad: errorCity,
         'descripcion-regalo': errorGiftDescription
     }
 
-    handleErrors(errors);
+    const isSuccess = handleErrors(errors) === 0;
+    if (isSuccess) {
+        $form.className = 'oculto';
+        document.querySelector('#exito').className = '';
+
+        setTimeout(() => {
+            window.location.href = 'wishlist.html';
+        }, 5000);
+    }
 }
 
 function handleErrors(errors) {
-    errorCity = errors.city;
-    errorGiftDescription = errors['descripcion-regalo'];
+    document.querySelectorAll('.error-item').forEach(e => {
+        e.remove();
+    });
 
-    if (errorCity) {
-        $form['ciudad'].className = 'error';
-    } else {
-        $form['ciudad'].className = '';
-    }
+    const keys = Object.keys(errors);
+    const $errors = document.querySelector('#errores');
+    let errorQuantity = 0;
 
-    if (errorGiftDescription) {
-        $form['descripcion-regalo'].className = 'error';
-    } else {
-        $form['descripcion-regalo'].className = '';
-    }
+    keys.forEach((key) => {
+        const error = errors[key];
+
+        if (error) {
+            $form[key].className = 'error';
+            const $error = document.createElement('li');
+            $error.className = 'error-item';
+            $error.innerText = error;
+            $errors.appendChild($error);
+            errorQuantity++;
+        } else {
+            $form[key].className = '';
+        }
+    })
+
+    return errorQuantity;
 }
-
 
 /*# Tarea clase 8
 
