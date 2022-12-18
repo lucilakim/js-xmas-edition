@@ -18,9 +18,10 @@ function validateForm(e) {
         $form.className = 'oculto';
         document.querySelector('#exito').className = '';
 
+        const DELAY_IN_MILLISECONDS = 5000;
         setTimeout(() => {
             window.location.href = 'wishlist.html';
-        }, 5000);
+        }, DELAY_IN_MILLISECONDS);
     }
 }
 
